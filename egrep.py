@@ -1,9 +1,10 @@
 # egrep.py
-# 
+#
 # This script reads text from stdin (line by line)
 # and spits back out the lines that match a regular expression
 
-import re, sys
+import re
+import sys
 
 # sys.argv is the list of command-line arguments
 # sys.argv[0] is the name of the program itself
