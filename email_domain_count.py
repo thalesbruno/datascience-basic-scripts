@@ -15,7 +15,9 @@ def get_domain(email_address: str) -> str:
 
 
 with open(data_file, 'r') as f:
-    counter = Counter(get_domain(line.strip()) for line in f)
+    counter = Counter(get_domain(line.strip())
+                      for line in f
+                      if '@' in line)
 
 
 print(dict(counter))
