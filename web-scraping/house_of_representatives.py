@@ -29,11 +29,21 @@ press_releases: Dict[str, Set[str]] = {}
 for house_url in unique_good_urls:
     html = requests.get(house_url).text
     soup = BeautifulSoup(html, 'html5lib')
-    pr_links = {a['href']
-                for a in soup('a') if 'press release' in a.text.lower()}
+    pr_links_original = {a['href']
+                         for a in soup('a')
+                         if 'press release' in a.text.lower()}
 
-    print(f"{house_url}: {pr_links}")
-    press_releases[house_url] = pr_links
+    # handling relative links
+    regex = r"^https?"
+    pr_links = {link
+                if re.match(regex, link)
+                else house_url+link
+                for link in pr_links_original}
+
+    # discarding empty sets
+    if pr_links:
+        print(f"{house_url}: {pr_links}")
+        press_releases[house_url] = pr_links
 
 print(f"press releases:")
 
@@ -41,6 +51,4 @@ for house_url, pr_links in press_releases:
     print(f"{house_url}: {pr_links}")
 
 # some work to do
-# handling empty sets and relative links as returns:
-# https://guthrie.house.gov/: set()
-# https://eshoo.house.gov/: {'/media/press-releases'}
+# handling double slash between absolute and relative parts of links
