@@ -18,3 +18,16 @@ weekday_counts = Counter(date.weekday() for date in dates)
 
 print(month_counts)
 print(weekday_counts)
+
+last_5_repositories = sorted(repos,
+                             key=lambda r: r['pushed_at'],
+                             reverse=True)[:5]
+
+last_5_repositories_names = [repo['name'] for repo in last_5_repositories]
+
+print("last 5 repositories:")
+print(*last_5_repositories_names, sep=', ')
+
+last_5_languages = [repo['language'] for repo in last_5_repositories]
+print("last five languages:")
+print(*last_5_languages, sep=', ')
