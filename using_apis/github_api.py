@@ -4,7 +4,7 @@ import requests
 from collections import Counter
 from dateutil.parser import parse
 
-github_user = "joelgrus"
+github_user = "thalesbruno"
 endpoint = f"https://api.github.com/users/{github_user}/repos"
 
 repos = json.loads(requests.get(endpoint).text)
