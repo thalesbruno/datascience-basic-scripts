@@ -1,4 +1,4 @@
-# twitter.py
+# twitter_get_access_tokens.py
 import json
 import webbrowser
 from twython import Twython
@@ -28,5 +28,9 @@ final_step = auth_client.get_authorized_tokens(PIN_CODE)
 ACCESS_TOKEN = final_step['oauth_token']
 ACCESS_TOKEN_SECRET = final_step['oauth_token_secret']
 
-print(f"access token: {ACCESS_TOKEN}")
-print(f"access token secret: {ACCESS_TOKEN_SECRET}")
+tokens = {'acess_token': ACCESS_TOKEN,
+          'access_token_secret': ACCESS_TOKEN_SECRET}
+
+# Exporting tokens to a json file
+with open('tokens.json', 'w') as f:
+    json.dump(tokens, f)

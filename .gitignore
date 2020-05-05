@@ -1,5 +1,6 @@
 # Hiding credentials
-twitter/credentials.json
+*credentials.json
+*tokens.json
 
 
 # Byte-compiled / optimized / DLL files
